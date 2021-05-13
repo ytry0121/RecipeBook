@@ -1,0 +1,31 @@
+<h1><%=@recipe.title%></h1>
+
+<p><%=@recipe.description%></p>
+
+<p>Serve for [ <%=@recipe.serving_for%> ]</p>
+
+<h2>Ingredients</h2>
+    <ul>
+        <% @ingredients.each do |ingredient| %>
+        <li>
+        <%= ingredient.name %> / <%= ingredient.quantity %>
+        </li>
+        <% end %>
+    </ul>
+
+<h2>Add Ingredients</h2>
+    <%= form_with model: [@recipe, @recipe.ingredient.build ] do |form| %>
+    <p>
+        <%= form.label :name %><br>
+        <%- form.text_field :name %>
+    </p>
+    <p>
+        <%= form.label :quantity %><br>
+        <%= form.text_field :quantity%>
+    </p>
+<ul>
+    <li><%= link_to "Edit", edit_recipe_path(@recipe) %></li>
+    <li><%= link_to "Delete", recipe_path(@recipe),
+                    method: :delete,
+                    data: {confirm: "Are you sure?"} %></li>
+</ul>

@@ -1,0 +1,10 @@
+<h1>Recipes</h1>
+
+<ul>
+    <% @recipes.each do |recipe| %>
+        <li>
+        <%= link_to recipe.title, recipe %>
+        </li>
+    <% end %>
+</ul>
+<%= link_to "New recipe", new_recipe_path%>
